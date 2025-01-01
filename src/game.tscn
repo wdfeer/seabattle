@@ -33,6 +33,9 @@ shader_parameter/noise2 = SubResource("NoiseTexture2D_3qdpt")
 size = Vector2(1440, 1440)
 
 [node name="Game" type="HBoxContainer"]
+offset_left = -8.0
+offset_right = 2560.0
+offset_bottom = 1440.0
 
 [node name="Sea" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_mi71g")
@@ -77,6 +80,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/PlayerInfo/BoatInfo/HBoxContainer/HBoxContainer1/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 52
 text = "Boat:"
 
 [node name="20Spacer" type="Control" parent="UI/PlayerInfo/BoatInfo/HBoxContainer/HBoxContainer1/HBoxContainer"]
@@ -138,6 +142,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/PlayerInfo/WeaponInfo/HBoxContainer2/HBoxContainer1/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 52
 text = "Weapon:"
 
 [node name="20Spacer" type="Control" parent="UI/PlayerInfo/WeaponInfo/HBoxContainer2/HBoxContainer1/HBoxContainer"]
@@ -196,12 +201,106 @@ text = "Incoming Wave:"
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="WaveInfo" type="Panel" parent="UI"]
+[node name="WaveInfo" type="VBoxContainer" parent="UI"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/WaveInfo"]
+layout_mode = 2
+alignment = 1
+
+[node name="BoatInfo" type="PanelContainer" parent="UI/WaveInfo/HBoxContainer"]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/WaveInfo/HBoxContainer/BoatInfo"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/WaveInfo/HBoxContainer/BoatInfo/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Boat:"
+
+[node name="20Spacer" type="Control" parent="UI/WaveInfo/HBoxContainer/BoatInfo/HBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/WaveInfo/HBoxContainer/BoatInfo/HBoxContainer"]
+layout_mode = 2
+
+[node name="20Spacer1" type="Control" parent="UI/WaveInfo/HBoxContainer/BoatInfo/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="VBoxContainer1" type="VBoxContainer" parent="UI/WaveInfo/HBoxContainer/BoatInfo/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+
+[node name="BoatName" type="Label" parent="UI/WaveInfo/HBoxContainer/BoatInfo/HBoxContainer/VBoxContainer/VBoxContainer1"]
+layout_mode = 2
+text = "Wooden Boat"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/WaveInfo/HBoxContainer/BoatInfo/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+alignment = 2
+
+[node name="HpLabel" type="Label" parent="UI/WaveInfo/HBoxContainer/BoatInfo/HBoxContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "HP: %d"
+
+[node name="20Spacer2" type="Control" parent="UI/WaveInfo/HBoxContainer/BoatInfo/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="WeaponInfo" type="PanelContainer" parent="UI/WaveInfo/HBoxContainer"]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/WaveInfo/HBoxContainer/WeaponInfo"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/WaveInfo/HBoxContainer/WeaponInfo/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 52
+text = "Weapon:"
+
+[node name="20Spacer" type="Control" parent="UI/WaveInfo/HBoxContainer/WeaponInfo/HBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/WaveInfo/HBoxContainer/WeaponInfo/HBoxContainer"]
+layout_mode = 2
+
+[node name="20Spacer1" type="Control" parent="UI/WaveInfo/HBoxContainer/WeaponInfo/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="VBoxContainer1" type="VBoxContainer" parent="UI/WaveInfo/HBoxContainer/WeaponInfo/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+
+[node name="BoatName" type="Label" parent="UI/WaveInfo/HBoxContainer/WeaponInfo/HBoxContainer/VBoxContainer/VBoxContainer1"]
+layout_mode = 2
+text = "Hand Rifle"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/WaveInfo/HBoxContainer/WeaponInfo/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+alignment = 2
+
+[node name="HpLabel" type="Label" parent="UI/WaveInfo/HBoxContainer/WeaponInfo/HBoxContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "DMG: %d"
+
+[node name="20Spacer2" type="Control" parent="UI/WaveInfo/HBoxContainer/WeaponInfo/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+
+[node name="10Spacer" type="Control" parent="UI/WaveInfo"]
+custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 
 [node name="ReadyButton" type="Button" parent="UI/WaveInfo"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Ready"
