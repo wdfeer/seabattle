@@ -21,6 +21,8 @@ func sail(direction: Vector2, delta: float):
 		var angle_direction = sign(angle_diff)
 		rotation += delta * body.turn_speed * angle_direction
 	
-	# Update velocity based on new rotation
+	sail_forward(delta)
+
+func sail_forward(delta: float):
 	velocity = Vector2.from_angle(rotation) * body.speed * delta
 	move_and_slide()
