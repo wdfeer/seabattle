@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvvjnk5q5r34x"]
+
+[ext_resource type="Script" path="res://src/boats/boat_body.gd" id="1_2q1ph"]
+
+[node name="WoodenBody" type="CollisionPolygon2D"]
+rotation = 1.5708
+polygon = PackedVector2Array(0, -32, 8, 0, 0, 32, -8, 0)
+script = ExtResource("1_2q1ph")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, -32, 8, 0, 0, 32, -8, 0)

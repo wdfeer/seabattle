@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cv75j6xrskgg4"]
 
 [ext_resource type="Shader" path="res://shaders/wobbly_grid.gdshader" id="1_xlgjy"]
-[ext_resource type="PackedScene" uid="uid://xa5r41gqqm44" path="res://src/boat.tscn" id="2_uh7xm"]
+[ext_resource type="PackedScene" uid="uid://cb2gtpptalj7x" path="res://src/boats/player_boat.tscn" id="2_lmvt5"]
 [ext_resource type="Texture2D" uid="uid://dlqnae7yets7n" path="res://assets/boat_side.svg" id="3_xhaqu"]
 [ext_resource type="Texture2D" uid="uid://cnlo3wl6dtt6b" path="res://assets/rifle.svg" id="4_5s0de"]
 
@@ -42,10 +42,8 @@ material = SubResource("ShaderMaterial_mi71g")
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_fn3gl")
 
-[node name="Boat" parent="Sea" instance=ExtResource("2_uh7xm")]
+[node name="PlayerBoat" parent="Sea" instance=ExtResource("2_lmvt5")]
 position = Vector2(720, 720)
-
-[node name="PlayerController" type="Node" parent="Sea/Boat"]
 
 [node name="UI" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(1120, 1440)
