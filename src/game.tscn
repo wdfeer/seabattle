@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cv75j6xrskgg4"]
+[gd_scene load_steps=15 format=3 uid="uid://cv75j6xrskgg4"]
 
 [ext_resource type="Shader" path="res://shaders/wobbly_grid.gdshader" id="1_xlgjy"]
 [ext_resource type="PackedScene" uid="uid://cb2gtpptalj7x" path="res://src/boats/player_boat.tscn" id="2_lmvt5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dlqnae7yets7n" path="res://assets/boat_side.svg" id="3_xhaqu"]
 [ext_resource type="Texture2D" uid="uid://cnlo3wl6dtt6b" path="res://assets/rifle.svg" id="4_5s0de"]
 [ext_resource type="Shader" path="res://shaders/many_circles.gdshader" id="4_28ht4"]
+[ext_resource type="Script" path="res://src/ui/player_info.gd" id="5_d67vo"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_60mvc"]
 
@@ -71,8 +72,12 @@ text = "Status:"
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="PlayerInfo" type="VBoxContainer" parent="UI"]
+[node name="PlayerInfo" type="VBoxContainer" parent="UI" node_paths=PackedStringArray("hp_label", "dmg_label", "fire_rate_label")]
 layout_mode = 2
+script = ExtResource("5_d67vo")
+hp_label = NodePath("BoatInfo/HBoxContainer/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2/HpLabel")
+dmg_label = NodePath("WeaponInfo/HBoxContainer2/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2/DmgLabel")
+fire_rate_label = NodePath("WeaponInfo/HBoxContainer2/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2/FireRateLabel")
 
 [node name="BoatInfo" type="PanelContainer" parent="UI/PlayerInfo"]
 layout_mode = 2
@@ -119,7 +124,7 @@ alignment = 2
 
 [node name="HpLabel" type="Label" parent="UI/PlayerInfo/BoatInfo/HBoxContainer/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
-text = "HP: %d / %d"
+text = "Health: %d / %d"
 
 [node name="20Spacer2" type="Control" parent="UI/PlayerInfo/BoatInfo/HBoxContainer/HBoxContainer1/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
@@ -181,7 +186,11 @@ alignment = 2
 
 [node name="DmgLabel" type="Label" parent="UI/PlayerInfo/WeaponInfo/HBoxContainer2/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
-text = "DMG: %d"
+text = "Damage: %d"
+
+[node name="FireRateLabel" type="Label" parent="UI/PlayerInfo/WeaponInfo/HBoxContainer2/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Fire Rate: %d"
 
 [node name="20Spacer2" type="Control" parent="UI/PlayerInfo/WeaponInfo/HBoxContainer2/HBoxContainer1/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
