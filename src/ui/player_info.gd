@@ -11,7 +11,7 @@ extends VBoxContainer
 
 var last_player_max_hp: float
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var player: Boat = PlayerController.get_player(get_tree())
 	if player == null:
 		hp_label.text = hp_text % [0, last_player_max_hp]

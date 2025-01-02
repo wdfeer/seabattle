@@ -11,7 +11,7 @@ static func create_projectile(pos: Vector2, velocity: Vector2, team: Boat.Team) 
 	projectiles.append(proj)
 	return proj
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var mat: ShaderMaterial = material
 	mat.set_shader_parameter("circle_count", len(projectiles))
 	mat.set_shader_parameter("circle_centers", projectiles.map(func(p): return p.pos))

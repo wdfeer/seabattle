@@ -72,6 +72,12 @@ crosshair = ExtResource("7_cukow")
 script = ExtResource("7_vtr08")
 enemy_boat_scene = ExtResource("8_mnest")
 
+[node name="Boundary" type="StaticBody2D" parent="Sea"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sea/Boundary"]
+build_mode = 1
+polygon = PackedVector2Array(1448, 0, 1448, 1440, 8, 1440, 8, 0)
+
 [node name="PlayerBoat" parent="Sea" instance=ExtResource("2_lmvt5")]
 position = Vector2(720, 720)
 

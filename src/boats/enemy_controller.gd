@@ -6,7 +6,7 @@ extends Node
 var preview: bool = true
 @onready var target: Boat = PlayerController.get_player(get_tree())
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if preview:
 		boat.modulate = Color.CRIMSON.lerp(Color.TRANSPARENT, 0.25)
 	else:
@@ -14,7 +14,9 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if preview: return
-	if target == null: return victory_dance(delta)
+	if target == null:
+		victory_dance(delta)
+		return
 	
 	process_movement(delta)
 	process_shooting(delta)
