@@ -13,6 +13,7 @@ func _process(delta: float) -> void:
 	if enemies.is_empty():
 		create_wave_preview()
 		wave_state = WaveState.Waiting
+		wave_counter += 1
 	elif enemies.any(func(b): return !b.controller.preview):
 		wave_state = WaveState.Ongoing
 

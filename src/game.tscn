@@ -228,19 +228,35 @@ stretch_mode = 2
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 
-[node name="WaveLabel" type="Label" parent="UI"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+layout_mode = 2
+
+[node name="WaveTitle" type="Label" parent="UI/HBoxContainer"]
+custom_minimum_size = Vector2(560, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Incoming Wave:"
+
+[node name="WaveCounter" type="Label" parent="UI/HBoxContainer"]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "(%d)"
+horizontal_alignment = 2
 
 [node name="20Spacer2" type="Control" parent="UI"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="WaveInfo" type="VBoxContainer" parent="UI" node_paths=PackedStringArray("title")]
+[node name="WaveInfo" type="VBoxContainer" parent="UI" node_paths=PackedStringArray("title", "wave_counter", "ready_button", "hp_label", "dmg_label", "fire_rate_label")]
 layout_mode = 2
 script = ExtResource("13_ipohm")
-title = NodePath("../WaveLabel")
+title = NodePath("../HBoxContainer/WaveTitle")
+wave_counter = NodePath("../HBoxContainer/WaveCounter")
+ready_button = NodePath("ReadyButton")
+hp_label = NodePath("HBoxContainer/BoatInfo/HBoxContainer/VBoxContainer/VBoxContainer2/HpLabel")
+dmg_label = NodePath("HBoxContainer/WeaponInfo/HBoxContainer/VBoxContainer/VBoxContainer2/DmgLabel")
+fire_rate_label = NodePath("HBoxContainer/WeaponInfo/HBoxContainer/VBoxContainer/VBoxContainer2/FireRateLabel")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/WaveInfo"]
 layout_mode = 2
@@ -284,7 +300,7 @@ alignment = 2
 
 [node name="HpLabel" type="Label" parent="UI/WaveInfo/HBoxContainer/BoatInfo/HBoxContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
-text = "HP: %d"
+text = "Health: %d"
 
 [node name="20Spacer2" type="Control" parent="UI/WaveInfo/HBoxContainer/BoatInfo/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
@@ -317,7 +333,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
-[node name="BoatName" type="Label" parent="UI/WaveInfo/HBoxContainer/WeaponInfo/HBoxContainer/VBoxContainer/VBoxContainer1"]
+[node name="GunName" type="Label" parent="UI/WaveInfo/HBoxContainer/WeaponInfo/HBoxContainer/VBoxContainer/VBoxContainer1"]
 layout_mode = 2
 text = "Hand Rifle"
 
@@ -326,9 +342,13 @@ custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 alignment = 2
 
-[node name="HpLabel" type="Label" parent="UI/WaveInfo/HBoxContainer/WeaponInfo/HBoxContainer/VBoxContainer/VBoxContainer2"]
+[node name="DmgLabel" type="Label" parent="UI/WaveInfo/HBoxContainer/WeaponInfo/HBoxContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
-text = "DMG: %d"
+text = "Damage: %d"
+
+[node name="FireRateLabel" type="Label" parent="UI/WaveInfo/HBoxContainer/WeaponInfo/HBoxContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Fire Rate: %d"
 
 [node name="20Spacer2" type="Control" parent="UI/WaveInfo/HBoxContainer/WeaponInfo/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
