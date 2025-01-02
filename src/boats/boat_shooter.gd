@@ -12,7 +12,7 @@ func can_shoot() -> bool:
 func shoot(direction: Vector2):
 	var proj: ProjectileSystem.Projectile = ProjectileSystem.create_projectile(
 		boat.position,
-		direction * boat.proj_velocity,
+		direction * boat.proj_velocity + boat.velocity,
 		boat.team)
 	proj.damage = boat.proj_damage
 	start()
