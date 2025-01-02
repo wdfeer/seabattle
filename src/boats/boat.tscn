@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/boats/boat.gd" id="1_epxvx"]
 [ext_resource type="Script" path="res://src/boats/boat_shooter.gd" id="2_ngq8x"]
 
-[node name="Boat" type="CharacterBody2D"]
+[node name="Boat" type="CharacterBody2D" groups=["boats"]]
 script = ExtResource("1_epxvx")
 
 [node name="Shooter" type="Timer" parent="."]
