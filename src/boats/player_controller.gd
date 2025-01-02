@@ -1,3 +1,4 @@
+class_name PlayerController
 extends Node
 
 @onready var boat: Boat = $".."

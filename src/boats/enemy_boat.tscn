@@ -4,8 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://dvvjnk5q5r34x" path="res://src/boats/wooden_body.tscn" id="2_46dti"]
 [ext_resource type="Script" path="res://src/boats/enemy_controller.gd" id="3_6xbcp"]
 
-[node name="EnemyBoat" instance=ExtResource("1_3b4u3")]
+[node name="EnemyBoat" node_paths=PackedStringArray("controller") instance=ExtResource("1_3b4u3")]
 team = 1
+controller = NodePath("EnemyController")
 
 [node name="Body" parent="." index="1" instance=ExtResource("2_46dti")]
 

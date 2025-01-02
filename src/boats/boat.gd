@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var proj_damage: float = 1
 @export var fire_rate: float = 3
 @export var proj_velocity: float = 600
+@export var controller: Node
 
 @onready var body: BoatBody = $Body
 @onready var shooter: BoatShooter = $Shooter
@@ -13,7 +14,7 @@ extends CharacterBody2D
 var hp: float = max_hp
 
 func hittable() -> bool:
-	return true # TODO return true if wave ongoing
+	return WaveGeneration.wave_state == WaveGeneration.WaveState.Ongoing
 
 func damage(amount: float):
 	hp -= amount

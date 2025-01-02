@@ -1,3 +1,4 @@
+class_name EnemyController
 extends Node
 
 var preview: bool = true

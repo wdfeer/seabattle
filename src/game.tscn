@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cv75j6xrskgg4"]
+[gd_scene load_steps=20 format=3 uid="uid://cv75j6xrskgg4"]
 
 [ext_resource type="Shader" path="res://shaders/wobbly_grid.gdshader" id="1_xlgjy"]
 [ext_resource type="PackedScene" uid="uid://cb2gtpptalj7x" path="res://src/boats/player_boat.tscn" id="2_lmvt5"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://src/ui/player_info.gd" id="5_d67vo"]
 [ext_resource type="Texture2D" uid="uid://j8xlv7lnila1" path="res://assets/cursor.png" id="6_jg17q"]
 [ext_resource type="Texture2D" uid="uid://cg4ve0i6xc35h" path="res://assets/crosshair.png" id="7_cukow"]
+[ext_resource type="Script" path="res://src/static/wave_generation.gd" id="7_vtr08"]
 [ext_resource type="PackedScene" uid="uid://cgvugn245jda7" path="res://src/boats/enemy_boat.tscn" id="8_mnest"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_60mvc"]
@@ -66,11 +67,12 @@ script = ExtResource("5_c3qvo")
 cursor = ExtResource("6_jg17q")
 crosshair = ExtResource("7_cukow")
 
+[node name="WaveGeneration" type="Node" parent="Sea"]
+script = ExtResource("7_vtr08")
+enemy_boat_scene = ExtResource("8_mnest")
+
 [node name="PlayerBoat" parent="Sea" instance=ExtResource("2_lmvt5")]
 position = Vector2(720, 720)
-
-[node name="EnemyBoat" parent="Sea" instance=ExtResource("8_mnest")]
-position = Vector2(64, 64)
 
 [node name="UI" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(1120, 1440)
@@ -340,3 +342,4 @@ text = "Ready"
 
 [connection signal="mouse_entered" from="Sea" to="Sea/Crosshair" method="_on_sea_mouse_entered"]
 [connection signal="mouse_exited" from="Sea" to="Sea/Crosshair" method="_on_sea_mouse_exited"]
+[connection signal="pressed" from="UI/WaveInfo/ReadyButton" to="Sea/WaveGeneration" method="start_wave"]
