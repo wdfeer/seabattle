@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cv75j6xrskgg4"]
+[gd_scene load_steps=18 format=3 uid="uid://cv75j6xrskgg4"]
 
 [ext_resource type="Shader" path="res://shaders/wobbly_grid.gdshader" id="1_xlgjy"]
 [ext_resource type="PackedScene" uid="uid://cb2gtpptalj7x" path="res://src/boats/player_boat.tscn" id="2_lmvt5"]
@@ -6,7 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://dlqnae7yets7n" path="res://assets/boat_side.svg" id="3_xhaqu"]
 [ext_resource type="Texture2D" uid="uid://cnlo3wl6dtt6b" path="res://assets/rifle.svg" id="4_5s0de"]
 [ext_resource type="Shader" path="res://shaders/many_circles.gdshader" id="4_28ht4"]
+[ext_resource type="Script" path="res://src/crosshair.gd" id="5_c3qvo"]
 [ext_resource type="Script" path="res://src/ui/player_info.gd" id="5_d67vo"]
+[ext_resource type="Texture2D" uid="uid://j8xlv7lnila1" path="res://assets/cursor.png" id="6_jg17q"]
+[ext_resource type="Texture2D" uid="uid://cg4ve0i6xc35h" path="res://assets/crosshair.png" id="7_cukow"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_60mvc"]
 
@@ -49,6 +52,7 @@ offset_bottom = 1440.0
 [node name="Sea" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_mi71g")
 layout_mode = 2
+mouse_filter = 0
 texture = SubResource("PlaceholderTexture2D_fn3gl")
 
 [node name="PlayerBoat" parent="Sea" instance=ExtResource("2_lmvt5")]
@@ -57,6 +61,12 @@ position = Vector2(720, 720)
 [node name="ProjectileSystem" parent="Sea" instance=ExtResource("3_shcb3")]
 material = SubResource("ShaderMaterial_4rr24")
 layout_mode = 1
+mouse_filter = 1
+
+[node name="Crosshair" type="Node" parent="Sea"]
+script = ExtResource("5_c3qvo")
+cursor = ExtResource("6_jg17q")
+crosshair = ExtResource("7_cukow")
 
 [node name="UI" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(1120, 1440)
@@ -323,3 +333,6 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Ready"
+
+[connection signal="mouse_entered" from="Sea" to="Sea/Crosshair" method="_on_sea_mouse_entered"]
+[connection signal="mouse_exited" from="Sea" to="Sea/Crosshair" method="_on_sea_mouse_exited"]
