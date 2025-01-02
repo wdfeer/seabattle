@@ -1,10 +1,16 @@
 class_name Boat
 extends CharacterBody2D
 
+@export var team: Boat.Team
 @export var max_hp: float = 10
-var hp: float = max_hp
+@export var proj_damage: float = 1
+@export var fire_rate: float = 3
+@export var proj_velocity: float = 100
 
-@onready var body: BoatBody = $"Body"
+@onready var body: BoatBody = $Body
+@onready var shooter: BoatShooter = $Shooter
+
+var hp: float = max_hp
 
 func damage(amount: float):
 	hp -= amount
@@ -27,3 +33,8 @@ func sail(direction: Vector2, delta: float):
 func sail_forward(delta: float):
 	velocity = Vector2.from_angle(rotation) * body.speed * delta
 	move_and_slide()
+
+
+enum Team {
+	Player, Enemy
+}

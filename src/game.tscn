@@ -38,7 +38,7 @@ size = Vector2(1440, 1440)
 shader = ExtResource("4_28ht4")
 shader_parameter/circle_size = 0.05
 shader_parameter/circle_centers = PackedVector2Array()
-shader_parameter/num_circles = 0
+shader_parameter/circle_count = 0
 
 [node name="Game" type="HBoxContainer"]
 offset_left = -8.0

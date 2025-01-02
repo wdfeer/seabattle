@@ -1,8 +1,8 @@
 class_name ControlOptions
 extends Object
 
-static var control_mode: ControlMode = ControlMode.Steering
+static var movement_mode: MovementMode = ControlMode.Steering
 
-enum ControlMode {
+enum MovementMode {
 	Direct, Steering
 }
