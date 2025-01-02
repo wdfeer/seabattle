@@ -17,10 +17,17 @@ func _process(delta: float) -> void:
 	mat.set_shader_parameter("circle_centers", projectiles.map(func(p): return p.pos))
 
 func _physics_process(delta: float) -> void:
+	var nodes: Array[Node] = get_tree().get_nodes_in_group("boats").filter(
+		func(x): return x is Boat and x.hittable())
+	var boats = nodes as Array[Boat]
 	for p in projectiles:
 		p.pos += p.vel * delta
 		p.life -= delta
-		# TODO: process collisions
+		for b in boats:
+			if b.team != p.team and b.position.distance_to(p.pos) < 10: # TODO: use boat shape
+				b.damage(p.damage)
+				p.life = -1
+				break
 	projectiles = projectiles.filter(func(p): return p.life > 0)
 
 class Projectile:

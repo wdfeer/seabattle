@@ -12,6 +12,9 @@ extends CharacterBody2D
 
 var hp: float = max_hp
 
+func hittable() -> bool:
+	return true # TODO return true if wave ongoing
+
 func damage(amount: float):
 	hp -= amount
 	if hp <= 0:

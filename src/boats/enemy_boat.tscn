@@ -7,7 +7,7 @@
 [node name="EnemyBoat" instance=ExtResource("1_3b4u3")]
 team = 1
 
-[node name="WoodenBody" parent="." index="1" instance=ExtResource("2_46dti")]
+[node name="Body" parent="." index="1" instance=ExtResource("2_46dti")]
 
 [node name="EnemyController" type="Node" parent="." index="2"]
 script = ExtResource("3_6xbcp")
