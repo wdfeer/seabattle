@@ -31,4 +31,7 @@ func process_shooting(delta: float):
 		boat.shooter.shoot(dir)
 
 static func get_player(tree: SceneTree) -> Boat:
-	return tree.get_nodes_in_group("boats").filter(func(b): return b.team == Boat.Team.Player)[0]
+	var player_boats = tree.get_nodes_in_group("boats").filter(func(b): return b.team == Boat.Team.Player)
+	if player_boats.is_empty():
+		return null
+	return player_boats[0]

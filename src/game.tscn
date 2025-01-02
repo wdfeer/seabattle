@@ -89,9 +89,10 @@ text = "Status:"
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="PlayerInfo" type="VBoxContainer" parent="UI" node_paths=PackedStringArray("hp_label", "dmg_label", "fire_rate_label")]
+[node name="PlayerInfo" type="VBoxContainer" parent="UI" node_paths=PackedStringArray("title", "hp_label", "dmg_label", "fire_rate_label")]
 layout_mode = 2
 script = ExtResource("5_d67vo")
+title = NodePath("../PlayerLabel")
 hp_label = NodePath("BoatInfo/HBoxContainer/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2/HpLabel")
 dmg_label = NodePath("WeaponInfo/HBoxContainer2/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2/DmgLabel")
 fire_rate_label = NodePath("WeaponInfo/HBoxContainer2/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2/FireRateLabel")

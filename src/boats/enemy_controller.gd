@@ -14,10 +14,15 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if preview: return
-	if target == null: return
+	if target == null: return victory_dance(delta)
 	
 	process_movement(delta)
 	process_shooting(delta)
+
+func victory_dance(delta: float):
+	boat.steer(1, delta)
+	if (int(Time.get_unix_time_from_system() * 1.5)) % 2 == 0:
+		boat.sail_forward(delta) 
 
 func process_movement(delta: float):
 	var direction = boat.global_position.direction_to(target.global_position)
