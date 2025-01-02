@@ -8,10 +8,7 @@ extends VBoxContainer
 @onready var fire_rate_text = fire_rate_label.text
 
 func _process(delta: float) -> void:
-	var player = get_player()
+	var player = PlayerController.get_player(get_tree())
 	hp_label.text = hp_text % [player.hp, player.max_hp]
 	dmg_label.text = dmg_text % player.proj_damage
 	fire_rate_label.text = fire_rate_text % player.fire_rate
-
-func get_player() -> Boat:
-	return get_tree().get_nodes_in_group("boats").filter(func(b): return b.team == Boat.Team.Player)[0]

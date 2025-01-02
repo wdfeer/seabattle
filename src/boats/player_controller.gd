@@ -29,3 +29,6 @@ func process_shooting(delta: float):
 	if Input.is_action_pressed("shoot") and boat.shooter.can_shoot():
 		var dir = boat.global_position.direction_to(boat.get_global_mouse_position() + Crosshair.AIM_OFFSET)
 		boat.shooter.shoot(dir)
+
+static func get_player(tree: SceneTree) -> Boat:
+	return tree.get_nodes_in_group("boats").filter(func(b): return b.team == Boat.Team.Player)[0]
