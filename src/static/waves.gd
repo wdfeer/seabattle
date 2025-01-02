@@ -20,11 +20,22 @@ func _process(delta: float) -> void:
 static var wave_counter: int = 0
 static var wave_state: WaveState = WaveState.Waiting
 
+const sides_lines: Array = [
+	[Vector2(80, 80), Vector2(80, 1360)],  # Left
+	[Vector2(80, 80), Vector2(1360, 80)],  # Top
+	[Vector2(1360, 80), Vector2(1360, 1360)],  # Right
+	[Vector2(80, 1360), Vector2(1360, 1360)]  # Bottom
+]
+const sides_rotations: Array[float] = [0, PI / 2, PI, PI * 3 / 2]
+
 static func create_wave_preview():
 	var boat: Boat = instance.enemy_boat_scene.instantiate()
 	instance.add_sibling(boat)
 	
-	boat.position = Vector2(80, 80).lerp(Vector2(80, 1360), randf())
+	var i = randi_range(0, 3)
+	var side = sides_lines[i] as Array[Vector2]
+	boat.global_position = side[0].lerp(side[1], randf())
+	boat.rotation = sides_rotations[i]
 
 static func get_enemies() -> Array:
 	return instance.get_tree().get_nodes_in_group("boats").filter(func(b):
