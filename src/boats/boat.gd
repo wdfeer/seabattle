@@ -14,7 +14,7 @@ extends CharacterBody2D
 var hp: float = max_hp
 
 func hittable() -> bool:
-	return WaveGeneration.wave_state == WaveGeneration.WaveState.Ongoing
+	return Waves.wave_state == Waves.WaveState.Ongoing
 
 func damage(amount: float):
 	hp -= amount

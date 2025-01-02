@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cv75j6xrskgg4"]
+[gd_scene load_steps=21 format=3 uid="uid://cv75j6xrskgg4"]
 
 [ext_resource type="Shader" path="res://shaders/wobbly_grid.gdshader" id="1_xlgjy"]
 [ext_resource type="PackedScene" uid="uid://cb2gtpptalj7x" path="res://src/boats/player_boat.tscn" id="2_lmvt5"]
@@ -10,8 +10,9 @@
 [ext_resource type="Script" path="res://src/ui/player_info.gd" id="5_d67vo"]
 [ext_resource type="Texture2D" uid="uid://j8xlv7lnila1" path="res://assets/cursor.png" id="6_jg17q"]
 [ext_resource type="Texture2D" uid="uid://cg4ve0i6xc35h" path="res://assets/crosshair.png" id="7_cukow"]
-[ext_resource type="Script" path="res://src/static/wave_generation.gd" id="7_vtr08"]
+[ext_resource type="Script" path="res://src/static/waves.gd" id="7_vtr08"]
 [ext_resource type="PackedScene" uid="uid://cgvugn245jda7" path="res://src/boats/enemy_boat.tscn" id="8_mnest"]
+[ext_resource type="Script" path="res://src/ui/wave_info.gd" id="13_ipohm"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_60mvc"]
 
@@ -67,7 +68,7 @@ script = ExtResource("5_c3qvo")
 cursor = ExtResource("6_jg17q")
 crosshair = ExtResource("7_cukow")
 
-[node name="WaveGeneration" type="Node" parent="Sea"]
+[node name="Waves" type="Node" parent="Sea"]
 script = ExtResource("7_vtr08")
 enemy_boat_scene = ExtResource("8_mnest")
 
@@ -236,8 +237,10 @@ text = "Incoming Wave:"
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="WaveInfo" type="VBoxContainer" parent="UI"]
+[node name="WaveInfo" type="VBoxContainer" parent="UI" node_paths=PackedStringArray("title")]
 layout_mode = 2
+script = ExtResource("13_ipohm")
+title = NodePath("../WaveLabel")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/WaveInfo"]
 layout_mode = 2
@@ -342,4 +345,4 @@ text = "Ready"
 
 [connection signal="mouse_entered" from="Sea" to="Sea/Crosshair" method="_on_sea_mouse_entered"]
 [connection signal="mouse_exited" from="Sea" to="Sea/Crosshair" method="_on_sea_mouse_exited"]
-[connection signal="pressed" from="UI/WaveInfo/ReadyButton" to="Sea/WaveGeneration" method="start_wave"]
+[connection signal="pressed" from="UI/WaveInfo/ReadyButton" to="Sea/Waves" method="start_wave"]

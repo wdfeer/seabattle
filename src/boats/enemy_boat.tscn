@@ -6,6 +6,10 @@
 
 [node name="EnemyBoat" node_paths=PackedStringArray("controller") instance=ExtResource("1_3b4u3")]
 team = 1
+max_hp = null
+proj_damage = null
+fire_rate = null
+proj_velocity = null
 controller = NodePath("EnemyController")
 
 [node name="Body" parent="." index="1" instance=ExtResource("2_46dti")]

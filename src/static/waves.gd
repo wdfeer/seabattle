@@ -1,13 +1,20 @@
-class_name WaveGeneration
+class_name Waves
 extends Node
 
 @export var enemy_boat_scene: PackedScene
 
-static var instance: WaveGeneration
+static var instance: Waves
+
 func _ready() -> void:
 	instance = self
-	if get_preview_enemies().is_empty():
-		create_wave_preview.call_deferred()
+
+func _process(delta: float) -> void:
+	var enemies = get_enemies()
+	if enemies.is_empty():
+		create_wave_preview()
+		wave_state = WaveState.Waiting
+	elif enemies.any(func(b): return !b.controller.preview):
+		wave_state = WaveState.Ongoing
 
 static var wave_counter: int = 0
 static var wave_state: WaveState = WaveState.Waiting
@@ -18,9 +25,11 @@ static func create_wave_preview():
 	
 	boat.position = Vector2(80, 80).lerp(Vector2(80, 1360), randf())
 
-static func get_preview_enemies() -> Array:
+static func get_enemies() -> Array:
 	return instance.get_tree().get_nodes_in_group("boats").filter(func(b):
-		return b.controller is EnemyController and b.controller.preview)
+		return b.controller is EnemyController)
+static func get_preview_enemies() -> Array:
+	return get_enemies().filter(func(b): return b.controller.preview)
 
 static func start_wave():
 	var previews = get_preview_enemies()
