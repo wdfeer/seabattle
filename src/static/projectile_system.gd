@@ -21,6 +21,7 @@ func _physics_process(delta: float) -> void:
 		p.pos += p.vel * delta
 		p.life -= delta
 		# TODO: process collisions
+	projectiles = projectiles.filter(func(p): return p.life > 0)
 
 class Projectile:
 	var pos: Vector2

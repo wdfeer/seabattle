@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var max_hp: float = 10
 @export var proj_damage: float = 1
 @export var fire_rate: float = 3
-@export var proj_velocity: float = 100
+@export var proj_velocity: float = 600
 
 @onready var body: BoatBody = $Body
 @onready var shooter: BoatShooter = $Shooter

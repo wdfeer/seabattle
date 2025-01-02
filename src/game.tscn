@@ -36,7 +36,7 @@ size = Vector2(1440, 1440)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4rr24"]
 shader = ExtResource("4_28ht4")
-shader_parameter/circle_size = 0.05
+shader_parameter/circle_size = 0.002
 shader_parameter/circle_centers = PackedVector2Array()
 shader_parameter/circle_count = 0
 

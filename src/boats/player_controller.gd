@@ -25,4 +25,6 @@ func process_movement(delta: float):
 			boat.sail_forward(delta * v_parallel)
 
 func process_shooting(delta: float):
-	pass
+	if Input.is_action_pressed("shoot") and boat.shooter.can_shoot():
+		var dir = boat.global_position.direction_to(boat.get_global_mouse_position())
+		boat.shooter.shoot(dir)
