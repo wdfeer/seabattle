@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cv75j6xrskgg4"]
+[gd_scene load_steps=14 format=3 uid="uid://cv75j6xrskgg4"]
 
 [ext_resource type="Shader" path="res://shaders/wobbly_grid.gdshader" id="1_xlgjy"]
 [ext_resource type="PackedScene" uid="uid://cb2gtpptalj7x" path="res://src/boats/player_boat.tscn" id="2_lmvt5"]
+[ext_resource type="PackedScene" uid="uid://cat2u0he3s6ug" path="res://src/projectile_system.tscn" id="3_shcb3"]
 [ext_resource type="Texture2D" uid="uid://dlqnae7yets7n" path="res://assets/boat_side.svg" id="3_xhaqu"]
 [ext_resource type="Texture2D" uid="uid://cnlo3wl6dtt6b" path="res://assets/rifle.svg" id="4_5s0de"]
+[ext_resource type="Shader" path="res://shaders/many_circles.gdshader" id="4_28ht4"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_60mvc"]
 
@@ -32,6 +34,12 @@ shader_parameter/noise2 = SubResource("NoiseTexture2D_3qdpt")
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fn3gl"]
 size = Vector2(1440, 1440)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4rr24"]
+shader = ExtResource("4_28ht4")
+shader_parameter/circle_size = 0.05
+shader_parameter/circle_centers = PackedVector2Array()
+shader_parameter/num_circles = 0
+
 [node name="Game" type="HBoxContainer"]
 offset_left = -8.0
 offset_right = 2560.0
@@ -44,6 +52,10 @@ texture = SubResource("PlaceholderTexture2D_fn3gl")
 
 [node name="PlayerBoat" parent="Sea" instance=ExtResource("2_lmvt5")]
 position = Vector2(720, 720)
+
+[node name="ProjectileSystem" parent="Sea" instance=ExtResource("3_shcb3")]
+material = SubResource("ShaderMaterial_4rr24")
+layout_mode = 1
 
 [node name="UI" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(1120, 1440)
