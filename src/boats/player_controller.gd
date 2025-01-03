@@ -23,7 +23,7 @@ func process_movement(delta: float):
 			var v_ang = Input.get_axis("left", "right")
 			boat.steer(v_ang, delta)
 			var v_parallel = Input.get_axis("down", "up")
-			boat.sail_forward(delta * v_parallel)
+			boat.sail_forward(v_parallel)
 
 func process_shooting(_delta: float):
 	if Input.is_action_pressed("shoot") and boat.shooter.can_shoot():

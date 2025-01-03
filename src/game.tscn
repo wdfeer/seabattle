@@ -95,10 +95,11 @@ text = "Status:"
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="PlayerInfo" type="VBoxContainer" parent="UI" node_paths=PackedStringArray("title", "hp_label", "dmg_label", "fire_rate_label")]
+[node name="PlayerInfo" type="VBoxContainer" parent="UI" node_paths=PackedStringArray("title", "boat_label", "hp_label", "dmg_label", "fire_rate_label")]
 layout_mode = 2
 script = ExtResource("5_d67vo")
 title = NodePath("../PlayerLabel")
+boat_label = NodePath("BoatInfo/HBoxContainer/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer1/BoatName")
 hp_label = NodePath("BoatInfo/HBoxContainer/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2/HpLabel")
 dmg_label = NodePath("WeaponInfo/HBoxContainer2/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2/DmgLabel")
 fire_rate_label = NodePath("WeaponInfo/HBoxContainer2/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2/FireRateLabel")
@@ -255,12 +256,13 @@ horizontal_alignment = 2
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="WaveInfo" type="VBoxContainer" parent="UI" node_paths=PackedStringArray("title", "wave_counter", "ready_button", "hp_label", "dmg_label", "fire_rate_label")]
+[node name="WaveInfo" type="VBoxContainer" parent="UI" node_paths=PackedStringArray("title", "wave_counter", "ready_button", "boat_label", "hp_label", "dmg_label", "fire_rate_label")]
 layout_mode = 2
 script = ExtResource("13_ipohm")
 title = NodePath("../HBoxContainer/WaveTitle")
 wave_counter = NodePath("../HBoxContainer/WaveCounter")
 ready_button = NodePath("ReadyButton")
+boat_label = NodePath("HBoxContainer/BoatInfo/HBoxContainer/VBoxContainer/VBoxContainer1/BoatName")
 hp_label = NodePath("HBoxContainer/BoatInfo/HBoxContainer/VBoxContainer/VBoxContainer2/HpLabel")
 dmg_label = NodePath("HBoxContainer/WeaponInfo/HBoxContainer/VBoxContainer/VBoxContainer2/DmgLabel")
 fire_rate_label = NodePath("HBoxContainer/WeaponInfo/HBoxContainer/VBoxContainer/VBoxContainer2/FireRateLabel")

@@ -5,6 +5,7 @@ extends VBoxContainer
 @onready var wave_counter_text = wave_counter.text
 @export var ready_button: Button
 
+@export var boat_label: Label
 @export var hp_label: Label
 @onready var hp_text = hp_label.text
 @export var dmg_label: Label
@@ -25,6 +26,7 @@ func _process(delta: float) -> void:
 	var enemies = Waves.get_enemies()
 	if !enemies.is_empty():
 		var enemy: Boat = enemies[0]
+		boat_label.text = enemy.body.boat_name
 		hp_label.text = hp_text % enemy.hp
 		dmg_label.text = dmg_text % enemy.proj_damage
 		fire_rate_label.text = fire_rate_text % enemy.fire_rate
