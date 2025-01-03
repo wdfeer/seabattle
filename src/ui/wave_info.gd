@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 		two_enemies_ui.visible = true
 		single_enemy_info.visible = false
 		for i in 2:
-			two_enemies_infos[i] = enemies[i]
+			two_enemies_infos[i].boat = enemies[i]
 	elif enemy_count == 1:
 		var enemy: Boat = enemies[0]
 		two_enemies_ui.visible = false

@@ -29,6 +29,10 @@ const sides_lines: Array = [
 const sides_rotations: Array[float] = [0, PI / 2, PI, PI * 3 / 2]
 
 static func create_wave_preview():
+	var enemy_count = 2 if wave_counter > 1 else 1
+	for i in enemy_count:
+		create_preview_enemy()
+static func create_preview_enemy():
 	var boat: Boat = instance.enemy_boat_scene.instantiate()
 	instance.add_sibling(boat)
 	
