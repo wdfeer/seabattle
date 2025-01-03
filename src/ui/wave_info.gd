@@ -5,10 +5,8 @@ extends VBoxContainer
 @onready var wave_counter_text = wave_counter.text
 @export var ready_button: Button
 
-@export var two_enemies_ui: Control
-@onready var two_enemies_infos = two_enemies_ui.get_children().filter(func(n): return n is BoatInfo)
-
-@export var single_enemy_info: BoatInfo
+@export var enemies_ui: Control
+@onready var enemies_infos = enemies_ui.get_children().filter(func(n): return n is BoatInfo)
 
 func _process(delta: float) -> void:
 	if Waves.wave_state == Waves.WaveState.Waiting:
@@ -21,17 +19,14 @@ func _process(delta: float) -> void:
 	wave_counter.text = wave_counter_text % Waves.wave_counter
 	
 	var enemies = Waves.get_enemies()
-	var enemy_count = len(enemies)
-	if enemy_count == 2:
-		two_enemies_ui.visible = true
-		single_enemy_info.visible = false
-		for i in 2:
-			two_enemies_infos[i].boat = enemies[i]
-	elif enemy_count == 1:
-		var enemy: Boat = enemies[0]
-		two_enemies_ui.visible = false
-		single_enemy_info.visible = true
-		single_enemy_info.boat = enemy
+	if enemies.is_empty():
+		enemies_ui.visible = false
 	else:
-		two_enemies_ui.visible = false
-		single_enemy_info.visible = false
+		enemies_ui.visible = true
+		for i in len(enemies_infos):
+			if len(enemies) > i:
+				enemies_infos[i].boat = enemies[i]
+				enemies_infos[i].visible = true
+			else:
+				enemies_infos[i].boat = null
+				enemies_infos[i].visible = false

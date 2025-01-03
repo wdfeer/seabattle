@@ -5,7 +5,7 @@ static var types: Array[Array] = [
 	["Longbow", 1, 0.6, 300],
 	["Musket", 2, 1, 500],
 	["Hand Rifle", 2, 2, 600],
-	["SMG", 1, 6, 500],
+	["SMG", 1, 6, 300],
 	["Bolt Rifle", 5, 0.5, 800],
 ]
 
