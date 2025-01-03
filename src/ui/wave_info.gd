@@ -4,7 +4,11 @@ extends VBoxContainer
 @export var wave_counter: Label
 @onready var wave_counter_text = wave_counter.text
 @export var ready_button: Button
-@export var boat_info: BoatInfo
+
+@export var two_enemies_ui: Control
+@onready var two_enemies_infos = two_enemies_ui.get_children().filter(func(n): return n is BoatInfo)
+
+@export var single_enemy_info: BoatInfo
 
 func _process(delta: float) -> void:
 	if Waves.wave_state == Waves.WaveState.Waiting:
@@ -17,8 +21,17 @@ func _process(delta: float) -> void:
 	wave_counter.text = wave_counter_text % Waves.wave_counter
 	
 	var enemies = Waves.get_enemies()
-	if !enemies.is_empty():
+	var enemy_count = len(enemies)
+	if enemy_count == 2:
+		two_enemies_ui.visible = true
+		single_enemy_info.visible = false
+		for i in 2:
+			two_enemies_infos[i] = enemies[i]
+	elif enemy_count == 1:
 		var enemy: Boat = enemies[0]
-		boat_info.boat = enemy
+		two_enemies_ui.visible = false
+		single_enemy_info.visible = true
+		single_enemy_info.boat = enemy
 	else:
-		boat_info.boat = null
+		two_enemies_ui.visible = false
+		single_enemy_info.visible = false

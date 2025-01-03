@@ -1,5 +1,5 @@
 class_name BoatInfo
-extends Node
+extends Control
 
 @export var boat_label: Label
 @export var hp_label: Label
@@ -14,6 +14,8 @@ var boat: Boat = null
 
 var last_max_hp: float
 func _process(_delta: float) -> void:
+	if !visible: return
+	
 	if boat == null:
 		hp_label.text = hp_text % [0, last_max_hp]
 	else:
