@@ -40,6 +40,7 @@ static func create_preview_enemy():
 	var side = sides_lines[i] as Array[Vector2]
 	boat.global_position = side[0].lerp(side[1], randf())
 	boat.rotation = sides_rotations[i]
+	WeaponTypes.set_weapon(boat, randi_range(0, 1) if wave_counter < 3 else randi_range(2, len(WeaponTypes.types)))
 
 static func get_enemies() -> Array:
 	return instance.get_tree().get_nodes_in_group("boats").filter(func(b):

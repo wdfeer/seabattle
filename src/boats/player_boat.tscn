@@ -4,8 +4,7 @@
 [ext_resource type="Script" path="res://src/boats/player_controller.gd" id="2_repl2"]
 [ext_resource type="PackedScene" uid="uid://dvvjnk5q5r34x" path="res://src/boats/bodies/canoe.tscn" id="3_4i1td"]
 
-[node name="PlayerBoat" node_paths=PackedStringArray("controller") instance=ExtResource("1_bfv74")]
-controller = NodePath("PlayerController")
+[node name="PlayerBoat" instance=ExtResource("1_bfv74")]
 
 [node name="PlayerController" type="Node" parent="." index="0"]
 script = ExtResource("2_repl2")

@@ -1,13 +1,13 @@
 class_name Boat
 extends CharacterBody2D
 
-var weapon_name: String = "Hand Rifle"
-var proj_damage: float = 1
-var fire_rate: float = 3
-var proj_velocity: float = 600
-
 @export var team: Boat.Team
 @export var controller: Node
+
+@export var weapon_name: String = "Hand Rifle"
+@export var proj_damage: float = 1
+@export var fire_rate: float = 3
+@export var proj_velocity: float = 600
 
 @onready var body: BoatBody = $Body
 @onready var shooter: BoatShooter = $Shooter
