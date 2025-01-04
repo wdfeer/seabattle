@@ -4,6 +4,13 @@ extends Node
 @onready var boat: Boat = $".."
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("switch_control_mode"):
+		match ControlOptions.movement_mode:
+			ControlOptions.MovementMode.Direct:
+				ControlOptions.movement_mode = ControlOptions.MovementMode.Steering
+			ControlOptions.MovementMode.Steering:
+				ControlOptions.movement_mode = ControlOptions.MovementMode.Direct
+	
 	process_movement(delta)
 	process_shooting(delta)
 
