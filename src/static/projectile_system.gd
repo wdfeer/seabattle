@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 		p.pos += p.vel * delta
 		p.life -= delta
 		for b in boats:
-			if b.team != p.team and b.position.distance_to(p.pos) < 10: # TODO: use boat shape
+			if b.team != p.team and p.collides(b): # TODO: use boat shape
 				b.damage(p.damage)
 				p.life = -1
 				break
@@ -36,3 +36,11 @@ class Projectile:
 	var life: float = 2
 	var team: Boat.Team
 	var damage: float
+	
+	func collides(boat: Boat) -> bool:
+		var projShape = CircleShape2D.new()
+		projShape.radius = 3
+		var projTransform = Transform2D(0, pos)
+		var boatShape = ConvexPolygonShape2D.new()
+		boatShape.points = boat.body.polygon
+		return projShape.collide(projTransform, boatShape, boat.body.global_transform)
