@@ -2,7 +2,8 @@ class_name BodyTypes
 
 static var types: Array[PackedScene] = [
 	preload("res://src/boats/bodies/canoe.tscn"),
-	preload("res://src/boats/bodies/longship.tscn")
+	preload("res://src/boats/bodies/longship.tscn"),
+	preload("res://src/boats/bodies/galley.tscn")
 ]
 
 static func set_body_type(enemy: Boat, index: int):
