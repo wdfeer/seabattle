@@ -16,16 +16,11 @@ func _physics_process(delta: float) -> void:
 
 func process_movement(delta: float):
 	match ControlOptions.movement_mode:
-		ControlOptions.MovementMode.Direct:
-			if Input.is_action_pressed("forward"):
-				boat.sail_forward(delta)
-				return
-				
+		ControlOptions.MovementMode.Direct:	
 			var vx = Input.get_axis("left", "right")
 			var vy = Input.get_axis("up", "down")
 			var direction = Vector2(vx, vy)
-			if direction.length() > 0:
-				boat.sail(direction, delta)
+			boat.sail(direction, delta)
 		ControlOptions.MovementMode.Steering:
 			var v_ang = Input.get_axis("left", "right")
 			boat.steer(v_ang, delta)

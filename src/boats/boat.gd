@@ -26,14 +26,17 @@ func steer(ang_direction: float, delta: float):
 	rotation += delta * body.turn_speed * ang_direction
 
 func sail(direction: Vector2, delta: float):
-	var dir_angle = direction.angle()
-	# Normalize the angular difference to [-PI, PI]
-	var angle_diff = wrapf(dir_angle - rotation, -PI, PI)
-	
-	if abs(angle_diff) > 0.01:  # Small threshold to avoid jittering
-		steer(sign(angle_diff), delta)
-	
-	sail_forward(1)
+	if direction.length() > 0:
+		var dir_angle = direction.angle()
+		# Normalize the angular difference to [-PI, PI]
+		var angle_diff = wrapf(dir_angle - rotation, -PI, PI)
+		
+		if abs(angle_diff) > 0.01:  # Small threshold to avoid jittering
+			steer(sign(angle_diff), delta)
+		
+		sail_forward(1)
+	else:
+		velocity = Vector2.ZERO
 
 func sail_forward(mult: float):
 	velocity = Vector2.from_angle(rotation) * body.speed * mult
