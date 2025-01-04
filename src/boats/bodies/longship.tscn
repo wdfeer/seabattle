@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://nvpi1der4wuc"]
+
+[ext_resource type="Script" path="res://src/boats/boat_body.gd" id="1_y7obk"]
+
+[node name="Longship" type="CollisionPolygon2D"]
+rotation = 1.5708
+polygon = PackedVector2Array(0.000231679, 64, -15.9999, 24.0001, -16.0001, -23.9999, -0.000231679, -64, 15.9999, -24.0001, 16.0001, 23.9999)
+script = ExtResource("1_y7obk")
+boat_name = "Longship"
+max_hp = 30.0
+speed = 30.0
+turn_speed = 0.786
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0.000231679, 64, -15.9999, 24.0001, -16.0001, -23.9999, -0.000231679, -64, 15.9999, -24.0001, 16.0001, 23.9999)
