@@ -24,7 +24,7 @@ static var wave_counter: int = 0
 static var wave_max: int = 3
 static var wave_state: WaveState = WaveState.Waiting
 
-const sides_lines: Array = [
+const sides_lines: Array[Array] = [
 	[Vector2(80, 80), Vector2(80, 1360)],  # Left
 	[Vector2(80, 80), Vector2(1360, 80)],  # Top
 	[Vector2(1360, 80), Vector2(1360, 1360)],  # Right

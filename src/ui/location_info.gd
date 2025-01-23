@@ -1,11 +1,8 @@
 extends VBoxContainer
 
+@export var first_location_label: Label
+@onready var location_text = first_location_label.text
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	var pos1: Vector2i = Locations.locations.keys()[0]
+	first_location_label.text = location_text % [pos1.x, pos1.y]
