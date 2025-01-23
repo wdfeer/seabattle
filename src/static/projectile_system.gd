@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 		p.pos += p.vel * delta
 		p.life -= delta
 		for b in boats:
-			if b.team != p.team and p.collides(b): # TODO: use boat shape
+			if b.team != p.team and p.collides(b):
 				b.damage(p.damage)
 				p.life = -1
 				break
