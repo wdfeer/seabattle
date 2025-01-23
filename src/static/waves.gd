@@ -15,13 +15,18 @@ func _process(delta: float) -> void:
 			create_wave_preview()
 			wave_state = WaveState.Waiting
 			wave_counter += 1
+			Sectors.sectors[Sectors.current] -= 1
+		elif Sectors.sectors[Sectors.current] > 0:
+			wave_counter = -1 # Off by one if 0, for some reason
+			wave_max = Sectors.sectors[Sectors.current]
 		else:
 			wave_state = WaveState.Finished
+			Sectors.sectors[Sectors.current] = 0
 	elif enemies.any(func(b): return !b.controller.preview):
 		wave_state = WaveState.Ongoing
 
 static var wave_counter: int = 0
-static var wave_max: int = 3
+static var wave_max: int = Sectors.sectors[Sectors.current]
 static var wave_state: WaveState = WaveState.Waiting
 
 const sides_lines: Array[Array] = [
