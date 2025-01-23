@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cv75j6xrskgg4"]
+[gd_scene load_steps=23 format=3 uid="uid://cv75j6xrskgg4"]
 
 [ext_resource type="Shader" path="res://shaders/wobbly_grid.gdshader" id="1_xlgjy"]
 [ext_resource type="PackedScene" uid="uid://cb2gtpptalj7x" path="res://src/boats/player_boat.tscn" id="2_lmvt5"]
@@ -15,7 +15,6 @@
 [ext_resource type="Script" path="res://src/ui/boat_info.gd" id="11_ggwaq"]
 [ext_resource type="Script" path="res://src/ui/wave_info.gd" id="13_ipohm"]
 [ext_resource type="Script" path="res://src/ui/bottom_info.gd" id="14_lvrgx"]
-[ext_resource type="Script" path="res://src/ui/location_info.gd" id="15_4njf8"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_60mvc"]
 
@@ -245,11 +244,11 @@ stretch_mode = 2
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 
-[node name="BottomInfo" type="BoxContainer" parent="UI" node_paths=PackedStringArray("wave_info", "location_info")]
+[node name="BottomInfo" type="BoxContainer" parent="UI" node_paths=PackedStringArray("wave_info", "sector_info")]
 layout_mode = 2
 script = ExtResource("14_lvrgx")
 wave_info = NodePath("WaveInfo")
-location_info = NodePath("LocationInfo")
+sector_info = NodePath("SectorInfo")
 
 [node name="WaveInfo" type="VBoxContainer" parent="UI/BottomInfo" node_paths=PackedStringArray("title", "wave_counter", "ready_button", "enemies_ui")]
 layout_mode = 2
@@ -408,28 +407,15 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Ready"
 
-[node name="LocationInfo" type="VBoxContainer" parent="UI/BottomInfo" node_paths=PackedStringArray("first_location_label")]
+[node name="SectorInfo" type="VBoxContainer" parent="UI/BottomInfo"]
 visible = false
 layout_mode = 2
-script = ExtResource("15_4njf8")
-first_location_label = NodePath("GridContainer/LocationLabel")
 
-[node name="Title" type="Label" parent="UI/BottomInfo/LocationInfo"]
+[node name="Title" type="Label" parent="UI/BottomInfo/SectorInfo"]
 custom_minimum_size = Vector2(560, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
-text = "Completed Locations:"
-
-[node name="20Spacer2" type="Control" parent="UI/BottomInfo/LocationInfo"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-
-[node name="GridContainer" type="VBoxContainer" parent="UI/BottomInfo/LocationInfo"]
-layout_mode = 2
-
-[node name="LocationLabel" type="Label" parent="UI/BottomInfo/LocationInfo/GridContainer"]
-layout_mode = 2
-text = "(%d, %d)"
+text = "Sector captured!"
 
 [connection signal="mouse_entered" from="Sea" to="Sea/Crosshair" method="_on_sea_mouse_entered"]
 [connection signal="mouse_exited" from="Sea" to="Sea/Crosshair" method="_on_sea_mouse_exited"]
