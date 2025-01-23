@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cv75j6xrskgg4"]
+[gd_scene load_steps=24 format=3 uid="uid://cv75j6xrskgg4"]
 
 [ext_resource type="Shader" path="res://shaders/wobbly_grid.gdshader" id="1_xlgjy"]
 [ext_resource type="PackedScene" uid="uid://cb2gtpptalj7x" path="res://src/boats/player_boat.tscn" id="2_lmvt5"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://cgvugn245jda7" path="res://src/boats/enemy_boat.tscn" id="8_mnest"]
 [ext_resource type="Script" path="res://src/ui/boat_info.gd" id="11_ggwaq"]
 [ext_resource type="Script" path="res://src/ui/wave_info.gd" id="13_ipohm"]
+[ext_resource type="Script" path="res://src/ui/bottom_info.gd" id="14_lvrgx"]
+[ext_resource type="Script" path="res://src/ui/location_info.gd" id="15_4njf8"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_60mvc"]
 
@@ -243,7 +245,13 @@ stretch_mode = 2
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 
-[node name="WaveInfo" type="VBoxContainer" parent="UI" node_paths=PackedStringArray("title", "wave_counter", "ready_button", "enemies_ui")]
+[node name="BottomInfo" type="BoxContainer" parent="UI" node_paths=PackedStringArray("wave_info", "location_info")]
+layout_mode = 2
+script = ExtResource("14_lvrgx")
+wave_info = NodePath("WaveInfo")
+location_info = NodePath("LocationInfo")
+
+[node name="WaveInfo" type="VBoxContainer" parent="UI/BottomInfo" node_paths=PackedStringArray("title", "wave_counter", "ready_button", "enemies_ui")]
 layout_mode = 2
 script = ExtResource("13_ipohm")
 title = NodePath("HBoxContainer/WaveTitle")
@@ -251,34 +259,34 @@ wave_counter = NodePath("HBoxContainer/WaveCounter")
 ready_button = NodePath("VBoxContainer/ReadyButton")
 enemies_ui = NodePath("VBoxContainer/EnemiesUI")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/WaveInfo"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/BottomInfo/WaveInfo"]
 layout_mode = 2
 
-[node name="WaveTitle" type="Label" parent="UI/WaveInfo/HBoxContainer"]
+[node name="WaveTitle" type="Label" parent="UI/BottomInfo/WaveInfo/HBoxContainer"]
 custom_minimum_size = Vector2(560, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Incoming Wave:"
 
-[node name="WaveCounter" type="Label" parent="UI/WaveInfo/HBoxContainer"]
+[node name="WaveCounter" type="Label" parent="UI/BottomInfo/WaveInfo/HBoxContainer"]
 custom_minimum_size = Vector2(560, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
-text = "(%d)"
+text = "(%d/%d)"
 horizontal_alignment = 2
 
-[node name="20Spacer2" type="Control" parent="UI/WaveInfo"]
+[node name="20Spacer2" type="Control" parent="UI/BottomInfo/WaveInfo"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/WaveInfo"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/BottomInfo/WaveInfo"]
 layout_mode = 2
 
-[node name="EnemiesUI" type="HBoxContainer" parent="UI/WaveInfo/VBoxContainer"]
+[node name="EnemiesUI" type="HBoxContainer" parent="UI/BottomInfo/WaveInfo/VBoxContainer"]
 custom_minimum_size = Vector2(0, 308)
 layout_mode = 2
 
-[node name="BoatInfoBox1" type="PanelContainer" parent="UI/WaveInfo/VBoxContainer/EnemiesUI" node_paths=PackedStringArray("boat_label", "hp_label", "weapon_label", "dmg_label", "fire_rate_label")]
+[node name="BoatInfoBox1" type="PanelContainer" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI" node_paths=PackedStringArray("boat_label", "hp_label", "weapon_label", "dmg_label", "fire_rate_label")]
 custom_minimum_size = Vector2(555, 0)
 layout_mode = 2
 script = ExtResource("11_ggwaq")
@@ -288,55 +296,55 @@ weapon_label = NodePath("VBoxContainer/HBoxContainer/GunName")
 dmg_label = NodePath("VBoxContainer/VBoxContainer2/DmgLabel")
 fire_rate_label = NodePath("VBoxContainer/VBoxContainer2/FireRateLabel")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1"]
 layout_mode = 2
 alignment = 1
 
-[node name="20Spacer1" type="Control" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1/VBoxContainer"]
+[node name="20Spacer1" type="Control" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1/VBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1/VBoxContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="BoatName" type="Label" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1/VBoxContainer/HBoxContainer"]
+[node name="BoatName" type="Label" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Canoe"
 
-[node name="LabelSpacer" type="Label" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1/VBoxContainer/HBoxContainer"]
+[node name="LabelSpacer" type="Label" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = " / "
 
-[node name="GunName" type="Label" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1/VBoxContainer/HBoxContainer"]
+[node name="GunName" type="Label" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Recurve Bow"
 horizontal_alignment = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1/VBoxContainer"]
 layout_mode = 2
 
-[node name="HpLabel" type="Label" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1/VBoxContainer/VBoxContainer2"]
+[node name="HpLabel" type="Label" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 text = "Health: %.1f/%.1f"
 
-[node name="DmgLabel" type="Label" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1/VBoxContainer/VBoxContainer2"]
+[node name="DmgLabel" type="Label" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 text = "Damage: %.1f"
 
-[node name="FireRateLabel" type="Label" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1/VBoxContainer/VBoxContainer2"]
+[node name="FireRateLabel" type="Label" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 text = "Fire Rate: %.1f"
 
-[node name="20Spacer2" type="Control" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1/VBoxContainer"]
+[node name="20Spacer2" type="Control" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox1/VBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="10Spacer" type="Control" parent="UI/WaveInfo/VBoxContainer/EnemiesUI"]
+[node name="10Spacer" type="Control" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 
-[node name="BoatInfoBox2" type="PanelContainer" parent="UI/WaveInfo/VBoxContainer/EnemiesUI" node_paths=PackedStringArray("boat_label", "hp_label", "weapon_label", "dmg_label", "fire_rate_label")]
+[node name="BoatInfoBox2" type="PanelContainer" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI" node_paths=PackedStringArray("boat_label", "hp_label", "weapon_label", "dmg_label", "fire_rate_label")]
 visible = false
 custom_minimum_size = Vector2(555, 0)
 layout_mode = 2
@@ -347,59 +355,81 @@ weapon_label = NodePath("VBoxContainer/HBoxContainer/GunName")
 dmg_label = NodePath("VBoxContainer/VBoxContainer2/DmgLabel")
 fire_rate_label = NodePath("VBoxContainer/VBoxContainer2/FireRateLabel")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2"]
 layout_mode = 2
 alignment = 1
 
-[node name="20Spacer1" type="Control" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2/VBoxContainer"]
+[node name="20Spacer1" type="Control" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2/VBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2/VBoxContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="BoatName" type="Label" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2/VBoxContainer/HBoxContainer"]
+[node name="BoatName" type="Label" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Canoe"
 
-[node name="LabelSpacer" type="Label" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2/VBoxContainer/HBoxContainer"]
+[node name="LabelSpacer" type="Label" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = " / "
 
-[node name="GunName" type="Label" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2/VBoxContainer/HBoxContainer"]
+[node name="GunName" type="Label" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Hand Rifle"
 horizontal_alignment = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2/VBoxContainer"]
 layout_mode = 2
 
-[node name="HpLabel" type="Label" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2/VBoxContainer/VBoxContainer2"]
+[node name="HpLabel" type="Label" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 text = "Health: %.1f/%.1f"
 
-[node name="DmgLabel" type="Label" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2/VBoxContainer/VBoxContainer2"]
+[node name="DmgLabel" type="Label" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 text = "Damage: %.1f"
 
-[node name="FireRateLabel" type="Label" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2/VBoxContainer/VBoxContainer2"]
+[node name="FireRateLabel" type="Label" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 text = "Fire Rate: %.1f"
 
-[node name="20Spacer2" type="Control" parent="UI/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2/VBoxContainer"]
+[node name="20Spacer2" type="Control" parent="UI/BottomInfo/WaveInfo/VBoxContainer/EnemiesUI/BoatInfoBox2/VBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="10Spacer" type="Control" parent="UI/WaveInfo/VBoxContainer"]
+[node name="10Spacer" type="Control" parent="UI/BottomInfo/WaveInfo/VBoxContainer"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 
-[node name="ReadyButton" type="Button" parent="UI/WaveInfo/VBoxContainer"]
+[node name="ReadyButton" type="Button" parent="UI/BottomInfo/WaveInfo/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Ready"
 
+[node name="LocationInfo" type="VBoxContainer" parent="UI/BottomInfo"]
+visible = false
+layout_mode = 2
+script = ExtResource("15_4njf8")
+
+[node name="Title" type="Label" parent="UI/BottomInfo/LocationInfo"]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Completed Locations:"
+
+[node name="20Spacer2" type="Control" parent="UI/BottomInfo/LocationInfo"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="GridContainer" type="VBoxContainer" parent="UI/BottomInfo/LocationInfo"]
+layout_mode = 2
+
+[node name="LocationLabel" type="Label" parent="UI/BottomInfo/LocationInfo/GridContainer"]
+layout_mode = 2
+text = "(%d, %d)"
+
 [connection signal="mouse_entered" from="Sea" to="Sea/Crosshair" method="_on_sea_mouse_entered"]
 [connection signal="mouse_exited" from="Sea" to="Sea/Crosshair" method="_on_sea_mouse_exited"]
-[connection signal="pressed" from="UI/WaveInfo/VBoxContainer/ReadyButton" to="Sea/Waves" method="start_wave"]
+[connection signal="pressed" from="UI/BottomInfo/WaveInfo/VBoxContainer/ReadyButton" to="Sea/Waves" method="start_wave"]

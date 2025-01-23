@@ -11,13 +11,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var enemies = get_enemies()
 	if enemies.is_empty():
-		create_wave_preview()
-		wave_state = WaveState.Waiting
-		wave_counter += 1
+		if wave_counter < wave_max:
+			create_wave_preview()
+			wave_state = WaveState.Waiting
+			wave_counter += 1
+		else:
+			wave_state = WaveState.Finished
 	elif enemies.any(func(b): return !b.controller.preview):
 		wave_state = WaveState.Ongoing
 
 static var wave_counter: int = 0
+static var wave_max: int = 3
 static var wave_state: WaveState = WaveState.Waiting
 
 const sides_lines: Array = [
@@ -29,9 +33,12 @@ const sides_lines: Array = [
 const sides_rotations: Array[float] = [0, PI / 2, PI, PI * 3 / 2]
 
 static func create_wave_preview():
-	var enemy_count = 2 if wave_counter > 1 else 1
-	for i in enemy_count:
-		create_preview_enemy()
+	if wave_state == WaveState.Finished:
+		printerr("Cannot create wave preview when finished!")
+	else:
+		var enemy_count = 2 if wave_counter > 1 else 1
+		for i in enemy_count:
+			create_preview_enemy()
 static func create_preview_enemy():
 	var boat: Boat = instance.enemy_boat_scene.instantiate()
 	BodyTypes.set_body_type(boat, 0 if wave_counter < 2 else
@@ -52,11 +59,14 @@ static func get_preview_enemies() -> Array:
 	return get_enemies().filter(func(b): return b.controller.preview)
 
 static func start_wave():
-	var previews = get_preview_enemies()
-	for boat in previews:
-		(boat.controller as EnemyController).preview = false
+	if wave_state == WaveState.Finished:
+		printerr("Cannot start a wave when finished!")
+	else:
+		var previews = get_preview_enemies()
+		for boat in previews:
+			(boat.controller as EnemyController).preview = false
 
 
 enum WaveState {
-	Waiting, Ongoing
+	Waiting, Ongoing, Finished
 }
