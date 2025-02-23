@@ -52,6 +52,8 @@ static func get_preview_enemies() -> Array:
 	return get_enemies().filter(func(b): return b.controller.preview)
 
 static func start_wave():
+	assert(wave_state != WaveState.Finished)
+	
 	var previews = get_preview_enemies()
 	for boat in previews:
 		(boat.controller as EnemyController).preview = false

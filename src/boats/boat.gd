@@ -22,16 +22,16 @@ func damage(amount: float):
 	if hp <= 0:
 		queue_free()
 
-func steer(ang_direction: float, delta: float):
-	rotation += delta * body.turn_speed * ang_direction
+func steer(ang_change_direction: float, delta: float):
+	rotation += delta * body.turn_speed * ang_change_direction
 
-func sail(direction: Vector2, delta: float):
+func sail(direction: Vector2, delta: float, ang_margin: float = PI / 16):
 	if direction.length() > 0:
 		var dir_angle = direction.angle()
 		# Normalize the angular difference to [-PI, PI]
 		var angle_diff = wrapf(dir_angle - rotation, -PI, PI)
 		
-		if abs(angle_diff) > 0.01:  # Small threshold to avoid jittering
+		if abs(angle_diff) > ang_margin:
 			steer(sign(angle_diff), delta)
 		
 		sail_forward(1)
