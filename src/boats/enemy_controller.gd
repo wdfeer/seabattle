@@ -35,7 +35,7 @@ func process_movement(delta: float):
 			var direction = self_pos.direction_to(target_pos)
 			boat.sail(direction, delta)
 		AiType.Passive:
-			const safe_range = 400
+			const safe_range = 200
 			const margin = 100
 			const ang_margin = PI / 16
 			

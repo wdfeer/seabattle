@@ -20,7 +20,7 @@ func process_movement(delta: float):
 			var vx = Input.get_axis("left", "right")
 			var vy = Input.get_axis("up", "down")
 			var direction = Vector2(vx, vy)
-			boat.sail(direction, delta)
+			boat.sail(direction, delta, PI / 256)
 		ControlOptions.MovementMode.Steering:
 			var v_ang = Input.get_axis("left", "right")
 			boat.steer(v_ang, delta)
