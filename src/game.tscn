@@ -83,7 +83,6 @@ polygon = PackedVector2Array(1448, 0, 1448, 1440, 8, 1440, 8, 0)
 
 [node name="PlayerBoat" parent="Sea" instance=ExtResource("2_lmvt5")]
 position = Vector2(720, 720)
-fire_rate = 30.0
 
 [node name="NextSector" type="Area2D" parent="Sea"]
 visible = false

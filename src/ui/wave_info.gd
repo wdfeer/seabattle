@@ -8,7 +8,7 @@ extends VBoxContainer
 @export var enemies_ui: Control
 @onready var enemies_infos = enemies_ui.get_children().filter(func(n): return n is BoatInfo)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	match Waves.wave_state:
 		Waves.WaveState.Waiting:
 			title.text = "Incoming Wave:"

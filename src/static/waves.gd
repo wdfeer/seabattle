@@ -8,12 +8,12 @@ static var instance: Waves
 func _ready() -> void:
 	instance = self
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var enemies = get_enemies()
 	if enemies.is_empty():
 		if wave_counter < wave_max:
-			create_wave_preview()
 			wave_state = WaveState.Waiting
+			create_wave_preview()
 			wave_counter += 1
 			Sectors.sectors[Sectors.current] -= 1
 		elif Sectors.sectors[Sectors.current] > 0:
@@ -38,12 +38,10 @@ const sides_lines: Array[Array] = [
 const sides_rotations: Array[float] = [0, PI / 2, PI, PI * 3 / 2]
 
 static func create_wave_preview():
-	if wave_state == WaveState.Finished:
-		printerr("Cannot create wave preview when finished!")
-	else:
-		var enemy_count = 2 if wave_counter > 1 else 1
-		for i in enemy_count:
-			create_preview_enemy()
+	assert(wave_state != WaveState.Finished)
+	var enemy_count = 2 if wave_counter > 1 else 1
+	for i in enemy_count:
+		create_preview_enemy()
 static func create_preview_enemy():
 	var boat: Boat = instance.enemy_boat_scene.instantiate()
 	BodyTypes.set_body_type(boat, 0 if wave_counter < 2 else

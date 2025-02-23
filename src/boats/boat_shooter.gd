@@ -3,7 +3,7 @@ extends Timer
 
 @onready var boat: Boat = $".."
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	wait_time = 1 / boat.fire_rate
 
 func can_shoot() -> bool:
