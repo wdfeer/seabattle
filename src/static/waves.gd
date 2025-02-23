@@ -62,12 +62,11 @@ static func get_preview_enemies() -> Array:
 	return get_enemies().filter(func(b): return b.controller.preview)
 
 static func start_wave():
-	if wave_state == WaveState.Finished:
-		printerr("Cannot start a wave when finished!")
-	else:
-		var previews = get_preview_enemies()
-		for boat in previews:
-			(boat.controller as EnemyController).preview = false
+	assert(wave_state != WaveState.Finished)
+	
+	var previews = get_preview_enemies()
+	for boat in previews:
+		(boat.controller as EnemyController).preview = false
 
 
 enum WaveState {
