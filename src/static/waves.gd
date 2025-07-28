@@ -43,10 +43,12 @@ static func create_wave_preview():
 	for i in enemy_count:
 		create_preview_enemy()
 static func create_preview_enemy():
+	var difficulty = Sectors.current.distance_to(Vector2i.ZERO)
+	
 	var boat: Boat = instance.enemy_boat_scene.instantiate()
-	BodyTypes.set_body_type(boat, 0 if wave_counter < 2 else
+	BodyTypes.set_body_type(boat, 0 if difficulty < 2 else
 		randi_range(0, min(wave_counter, len(BodyTypes.types) - 1)))
-	WeaponTypes.set_weapon(boat, randi_range(0, 1) if wave_counter < 4 else
+	WeaponTypes.set_weapon(boat, randi_range(0, 1) if difficulty < 3 else
 		randi_range(2, min(wave_counter, len(WeaponTypes.types) - 1)))
 	instance.add_sibling(boat)
 	
