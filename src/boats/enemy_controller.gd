@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	process_movement(delta)
-	process_shooting(delta)
+	process_shooting()
 
 func victory_dance(delta: float):
 	boat.steer(1, delta)
@@ -57,7 +57,7 @@ func process_movement(delta: float):
 				boat.steer(ang_delta, delta)
 			boat.sail_forward(velocity_mult)
 
-func process_shooting(delta: float):
+func process_shooting():
 	if boat.shooter.can_shoot():
 		var dir = boat.global_position.direction_to(target.global_position)
 		boat.shooter.shoot(dir)

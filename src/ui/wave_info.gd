@@ -8,15 +8,17 @@ extends VBoxContainer
 @export var enemies_ui: Control
 @onready var enemies_infos = enemies_ui.get_children().filter(func(n): return n is BoatInfo)
 
-func _process(delta: float) -> void:
-	if Waves.wave_state == Waves.WaveState.Waiting:
-		title.text = "Incoming Wave:"
-		ready_button.disabled = false
-	else:
-		title.text = "Current Wave:"
-		ready_button.disabled = true
+func _process(_delta: float) -> void:
+	match Waves.wave_state:
+		Waves.WaveState.Waiting:
+			title.text = "Incoming Wave:"
+			ready_button.disabled = false
+		Waves.WaveState.Ongoing:
+			title.text = "Current Wave:"
+			ready_button.disabled = true
 	
-	wave_counter.text = wave_counter_text % Waves.wave_counter
+	wave_counter.visible = Waves.wave_max != 1
+	wave_counter.text = wave_counter_text % [Waves.wave_counter, Waves.wave_max]
 	
 	var enemies = Waves.get_enemies()
 	if enemies.is_empty():

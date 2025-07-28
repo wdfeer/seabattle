@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://nvpi1der4wuc"]
 
-[ext_resource type="Script" path="res://src/boats/boat_body.gd" id="1_y7obk"]
+[ext_resource type="Script" uid="uid://0wlwyo7mbwcd" path="res://src/boats/boat_body.gd" id="1_y7obk"]
 
 [node name="Longship" type="CollisionPolygon2D"]
 rotation = 1.5708
