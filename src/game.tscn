@@ -84,15 +84,51 @@ polygon = PackedVector2Array(1448, 0, 1448, 1440, 8, 1440, 8, 0)
 [node name="PlayerBoat" parent="Sea" instance=ExtResource("2_lmvt5")]
 position = Vector2(720, 720)
 
-[node name="NextSector" type="Area2D" parent="Sea"]
-visible = false
+[node name="NextSectorRight" type="Area2D" parent="Sea"]
 position = Vector2(1340, 720)
 script = ExtResource("10_xxpr6")
+direction = Vector2i(1, 0)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sea/NextSector"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sea/NextSectorRight"]
 polygon = PackedVector2Array(0, -80, 80, 0, 0, 80)
 
-[node name="Polygon2D" type="Polygon2D" parent="Sea/NextSector"]
+[node name="Polygon2D" type="Polygon2D" parent="Sea/NextSectorRight"]
+polygon = PackedVector2Array(0, -80, 80, 0, 0, 80)
+
+[node name="NextSectorLeft" type="Area2D" parent="Sea"]
+position = Vector2(100, 720)
+rotation = 3.14159
+script = ExtResource("10_xxpr6")
+direction = Vector2i(-1, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sea/NextSectorLeft"]
+polygon = PackedVector2Array(0, -80, 80, 0, 0, 80)
+
+[node name="Polygon2D" type="Polygon2D" parent="Sea/NextSectorLeft"]
+polygon = PackedVector2Array(0, -80, 80, 0, 0, 80)
+
+[node name="NextSectorUp" type="Area2D" parent="Sea"]
+position = Vector2(720, 100)
+rotation = -1.5708
+script = ExtResource("10_xxpr6")
+direction = Vector2i(0, 1)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sea/NextSectorUp"]
+polygon = PackedVector2Array(0, -80, 80, 0, 0, 80)
+
+[node name="Polygon2D" type="Polygon2D" parent="Sea/NextSectorUp"]
+polygon = PackedVector2Array(0, -80, 80, 0, 0, 80)
+
+[node name="NextSectorDown" type="Area2D" parent="Sea"]
+position = Vector2(720, 1340)
+rotation = 1.5708
+script = ExtResource("10_xxpr6")
+direction = Vector2i(0, -1)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sea/NextSectorDown"]
+polygon = PackedVector2Array(0, -80, 80, 0, 0, 80)
+
+[node name="Polygon2D" type="Polygon2D" parent="Sea/NextSectorDown"]
 polygon = PackedVector2Array(0, -80, 80, 0, 0, 80)
 
 [node name="UI" type="VBoxContainer" parent="."]
@@ -431,5 +467,8 @@ text = "Sector captured!"
 
 [connection signal="mouse_entered" from="Sea" to="Sea/Crosshair" method="_on_sea_mouse_entered"]
 [connection signal="mouse_exited" from="Sea" to="Sea/Crosshair" method="_on_sea_mouse_exited"]
-[connection signal="body_entered" from="Sea/NextSector" to="Sea/NextSector" method="_on_body_entered"]
+[connection signal="body_entered" from="Sea/NextSectorRight" to="Sea/NextSectorRight" method="_on_body_entered"]
+[connection signal="body_entered" from="Sea/NextSectorLeft" to="Sea/NextSectorLeft" method="_on_body_entered"]
+[connection signal="body_entered" from="Sea/NextSectorUp" to="Sea/NextSectorUp" method="_on_body_entered"]
+[connection signal="body_entered" from="Sea/NextSectorDown" to="Sea/NextSectorDown" method="_on_body_entered"]
 [connection signal="pressed" from="UI/BottomInfo/WaveInfo/VBoxContainer/ReadyButton" to="Sea/Waves" method="start_wave"]
