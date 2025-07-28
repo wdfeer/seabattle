@@ -9,5 +9,5 @@ func _process(_delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Boat and body.team == Boat.Team.Player:
 		var pos = Sectors.current + direction
-		Sectors.sectors.get_or_add(pos, 3)
+		Sectors.sectors.get_or_add(pos, 1)
 		Sectors.current = pos
