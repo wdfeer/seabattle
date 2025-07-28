@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b8kdmjlr8u6k3"]
 
-[ext_resource type="Script" path="res://src/boats/boat_body.gd" id="1_8gb02"]
+[ext_resource type="Script" uid="uid://0wlwyo7mbwcd" path="res://src/boats/boat_body.gd" id="1_8gb02"]
 
 [node name="Galley" type="CollisionPolygon2D"]
 rotation = 1.5708

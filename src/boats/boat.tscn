@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://xa5r41gqqm44"]
 
-[ext_resource type="Script" path="res://src/boats/boat.gd" id="1_epxvx"]
-[ext_resource type="Script" path="res://src/boats/boat_shooter.gd" id="2_ngq8x"]
+[ext_resource type="Script" uid="uid://b13avvrwkfvc5" path="res://src/boats/boat.gd" id="1_epxvx"]
+[ext_resource type="Script" uid="uid://h6yv4bhcp10r" path="res://src/boats/boat_shooter.gd" id="2_ngq8x"]
 
 [node name="Boat" type="CharacterBody2D" groups=["boats"]]
 script = ExtResource("1_epxvx")

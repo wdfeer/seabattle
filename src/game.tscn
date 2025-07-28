@@ -1,21 +1,21 @@
 [gd_scene load_steps=24 format=3 uid="uid://cv75j6xrskgg4"]
 
-[ext_resource type="Shader" path="res://shaders/wobbly_grid.gdshader" id="1_xlgjy"]
+[ext_resource type="Shader" uid="uid://biqujdf2x8j1m" path="res://shaders/wobbly_grid.gdshader" id="1_xlgjy"]
 [ext_resource type="PackedScene" uid="uid://cb2gtpptalj7x" path="res://src/boats/player_boat.tscn" id="2_lmvt5"]
 [ext_resource type="PackedScene" uid="uid://cat2u0he3s6ug" path="res://src/projectile_system.tscn" id="3_shcb3"]
 [ext_resource type="Texture2D" uid="uid://dlqnae7yets7n" path="res://assets/boat_side.svg" id="3_xhaqu"]
 [ext_resource type="Texture2D" uid="uid://cnlo3wl6dtt6b" path="res://assets/rifle.svg" id="4_5s0de"]
-[ext_resource type="Shader" path="res://shaders/many_circles.gdshader" id="4_28ht4"]
-[ext_resource type="Script" path="res://src/crosshair.gd" id="5_c3qvo"]
-[ext_resource type="Script" path="res://src/ui/player_info.gd" id="5_d67vo"]
+[ext_resource type="Shader" uid="uid://dtcpv1fcxefe2" path="res://shaders/many_circles.gdshader" id="4_28ht4"]
+[ext_resource type="Script" uid="uid://c5eaaxpbvnuj" path="res://src/crosshair.gd" id="5_c3qvo"]
+[ext_resource type="Script" uid="uid://jinuqqwkfa0v" path="res://src/ui/player_info.gd" id="5_d67vo"]
 [ext_resource type="Texture2D" uid="uid://j8xlv7lnila1" path="res://assets/cursor.png" id="6_jg17q"]
 [ext_resource type="Texture2D" uid="uid://cg4ve0i6xc35h" path="res://assets/crosshair.png" id="7_cukow"]
-[ext_resource type="Script" path="res://src/static/waves.gd" id="7_vtr08"]
+[ext_resource type="Script" uid="uid://okjlvdmlaxvy" path="res://src/static/waves.gd" id="7_vtr08"]
 [ext_resource type="PackedScene" uid="uid://cgvugn245jda7" path="res://src/boats/enemy_boat.tscn" id="8_mnest"]
-[ext_resource type="Script" path="res://src/next_sector.gd" id="10_xxpr6"]
-[ext_resource type="Script" path="res://src/ui/boat_info.gd" id="11_ggwaq"]
-[ext_resource type="Script" path="res://src/ui/wave_info.gd" id="13_ipohm"]
-[ext_resource type="Script" path="res://src/ui/bottom_info.gd" id="14_lvrgx"]
+[ext_resource type="Script" uid="uid://c5cfcd31aqssd" path="res://src/next_sector.gd" id="10_xxpr6"]
+[ext_resource type="Script" uid="uid://dbbw4yi8vlvk8" path="res://src/ui/boat_info.gd" id="11_ggwaq"]
+[ext_resource type="Script" uid="uid://cbj8null4r8j4" path="res://src/ui/wave_info.gd" id="13_ipohm"]
+[ext_resource type="Script" uid="uid://cp8a5thfr32e0" path="res://src/ui/bottom_info.gd" id="14_lvrgx"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_60mvc"]
 
@@ -36,10 +36,10 @@ shader = ExtResource("1_xlgjy")
 shader_parameter/color = Color(0.5, 0.5, 0.5, 1)
 shader_parameter/lineWidth = 1.0
 shader_parameter/size = Vector2(20, 20)
-shader_parameter/edge_fade = 1.0
-shader_parameter/wave_speed = 0.5
 shader_parameter/noise = SubResource("NoiseTexture2D_22ouk")
 shader_parameter/noise2 = SubResource("NoiseTexture2D_3qdpt")
+shader_parameter/edge_fade = 1.0
+shader_parameter/wave_speed = 0.5
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fn3gl"]
 size = Vector2(1440, 1440)

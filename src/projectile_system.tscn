@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cat2u0he3s6ug"]
 
-[ext_resource type="Script" path="res://src/static/projectile_system.gd" id="1_bf6j5"]
+[ext_resource type="Script" uid="uid://b34ouql8uff8w" path="res://src/static/projectile_system.gd" id="1_bf6j5"]
 
 [node name="ProjectileSystem" type="ColorRect"]
 anchors_preset = 15
