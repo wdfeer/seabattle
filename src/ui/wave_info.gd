@@ -17,6 +17,7 @@ func _process(_delta: float) -> void:
 			title.text = "Current Wave:"
 			ready_button.disabled = true
 	
+	wave_counter.visible = Waves.wave_max != 1
 	wave_counter.text = wave_counter_text % [Waves.wave_counter, Waves.wave_max]
 	
 	var enemies = Waves.get_enemies()
