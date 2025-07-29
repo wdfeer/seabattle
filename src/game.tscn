@@ -1,10 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://cv75j6xrskgg4"]
+[gd_scene load_steps=22 format=3 uid="uid://cv75j6xrskgg4"]
 
 [ext_resource type="Shader" uid="uid://biqujdf2x8j1m" path="res://shaders/wobbly_grid.gdshader" id="1_xlgjy"]
 [ext_resource type="PackedScene" uid="uid://cb2gtpptalj7x" path="res://src/boats/player_boat.tscn" id="2_lmvt5"]
 [ext_resource type="PackedScene" uid="uid://cat2u0he3s6ug" path="res://src/projectile_system.tscn" id="3_shcb3"]
-[ext_resource type="Texture2D" uid="uid://dlqnae7yets7n" path="res://assets/boat_side.svg" id="3_xhaqu"]
-[ext_resource type="Texture2D" uid="uid://cnlo3wl6dtt6b" path="res://assets/rifle.svg" id="4_5s0de"]
 [ext_resource type="Shader" uid="uid://dtcpv1fcxefe2" path="res://shaders/many_circles.gdshader" id="4_28ht4"]
 [ext_resource type="Script" uid="uid://c5eaaxpbvnuj" path="res://src/crosshair.gd" id="5_c3qvo"]
 [ext_resource type="Script" uid="uid://jinuqqwkfa0v" path="res://src/ui/player_info.gd" id="5_d67vo"]
@@ -33,7 +31,7 @@ noise = SubResource("FastNoiseLite_y3sdo")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mi71g"]
 shader = ExtResource("1_xlgjy")
-shader_parameter/color = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/color = Color(0, 0, 0, 1)
 shader_parameter/lineWidth = 1.0
 shader_parameter/size = Vector2(20, 20)
 shader_parameter/noise = SubResource("NoiseTexture2D_22ouk")
@@ -158,139 +156,109 @@ boat_info = NodePath("BoatInfo")
 [node name="BoatInfo" type="Control" parent="UI/PlayerInfo" node_paths=PackedStringArray("boat_label", "hp_label", "weapon_label", "dmg_label", "fire_rate_label")]
 layout_mode = 2
 script = ExtResource("11_ggwaq")
-boat_label = NodePath("../BoatInfoBox/HBoxContainer/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer1/BoatName")
-hp_label = NodePath("../BoatInfoBox/HBoxContainer/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2/HpLabel")
-weapon_label = NodePath("../WeaponInfoBox/HBoxContainer2/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer1/GunName")
-dmg_label = NodePath("../WeaponInfoBox/HBoxContainer2/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2/DmgLabel")
-fire_rate_label = NodePath("../WeaponInfoBox/HBoxContainer2/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2/FireRateLabel")
+boat_label = NodePath("../BoatInfoBox/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer1/BoatName")
+hp_label = NodePath("../BoatInfoBox/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2/HpLabel")
+weapon_label = NodePath("../WeaponInfoBox/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer1/GunName")
+dmg_label = NodePath("../WeaponInfoBox/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2/DmgLabel")
+fire_rate_label = NodePath("../WeaponInfoBox/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2/FireRateLabel")
 
 [node name="BoatInfoBox" type="PanelContainer" parent="UI/PlayerInfo"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/PlayerInfo/BoatInfoBox"]
-layout_mode = 2
-alignment = 1
-
-[node name="HBoxContainer1" type="HBoxContainer" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer"]
+[node name="HBoxContainer1" type="HBoxContainer" parent="UI/PlayerInfo/BoatInfoBox"]
 custom_minimum_size = Vector2(720, 0)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer/HBoxContainer1"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer1"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer/HBoxContainer1/HBoxContainer"]
+[node name="Label" type="Label" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer1/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 52
 text = "Boat:"
 
-[node name="20Spacer" type="Control" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer/HBoxContainer1/HBoxContainer"]
+[node name="20Spacer" type="Control" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer1/HBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer/HBoxContainer1/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer1/HBoxContainer"]
 layout_mode = 2
 
-[node name="20Spacer1" type="Control" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer/HBoxContainer1/HBoxContainer/VBoxContainer"]
+[node name="20Spacer1" type="Control" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer1/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="VBoxContainer1" type="VBoxContainer" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer/HBoxContainer1/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer1" type="VBoxContainer" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer1/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
-[node name="BoatName" type="Label" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer1"]
+[node name="BoatName" type="Label" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer1"]
 layout_mode = 2
 text = "Canoe"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer/HBoxContainer1/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer1/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 alignment = 2
 
-[node name="HpLabel" type="Label" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2"]
+[node name="HpLabel" type="Label" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 text = "Health: %.1f / %.1f"
 
-[node name="20Spacer2" type="Control" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer/HBoxContainer1/HBoxContainer/VBoxContainer"]
+[node name="20Spacer2" type="Control" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer1/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer"]
-custom_minimum_size = Vector2(400, 0)
-layout_mode = 2
-alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="UI/PlayerInfo/BoatInfoBox/HBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 8
-texture = ExtResource("3_xhaqu")
-stretch_mode = 2
 
 [node name="WeaponInfoBox" type="PanelContainer" parent="UI/PlayerInfo"]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/PlayerInfo/WeaponInfoBox"]
-layout_mode = 2
-alignment = 1
-
-[node name="HBoxContainer1" type="HBoxContainer" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer2"]
+[node name="HBoxContainer1" type="HBoxContainer" parent="UI/PlayerInfo/WeaponInfoBox"]
 custom_minimum_size = Vector2(720, 0)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer2/HBoxContainer1"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer1"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer2/HBoxContainer1/HBoxContainer"]
+[node name="Label" type="Label" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer1/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 52
 text = "Weapon:"
 
-[node name="20Spacer" type="Control" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer2/HBoxContainer1/HBoxContainer"]
+[node name="20Spacer" type="Control" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer1/HBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer2/HBoxContainer1/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer1/HBoxContainer"]
 layout_mode = 2
 
-[node name="20Spacer1" type="Control" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer2/HBoxContainer1/HBoxContainer/VBoxContainer"]
+[node name="20Spacer1" type="Control" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer1/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 
-[node name="VBoxContainer1" type="VBoxContainer" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer2/HBoxContainer1/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer1" type="VBoxContainer" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer1/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
-[node name="GunName" type="Label" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer2/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer1"]
+[node name="GunName" type="Label" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer1"]
 layout_mode = 2
 text = "Hand Rifle"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer2/HBoxContainer1/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer1/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 alignment = 2
 
-[node name="DmgLabel" type="Label" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer2/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2"]
+[node name="DmgLabel" type="Label" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 text = "Damage: %.1f"
 
-[node name="FireRateLabel" type="Label" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer2/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2"]
+[node name="FireRateLabel" type="Label" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer1/HBoxContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 text = "Fire Rate: %.1f"
 
-[node name="20Spacer2" type="Control" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer2/HBoxContainer1/HBoxContainer/VBoxContainer"]
+[node name="20Spacer2" type="Control" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer1/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer2"]
-custom_minimum_size = Vector2(400, 0)
-layout_mode = 2
-alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="UI/PlayerInfo/WeaponInfoBox/HBoxContainer2/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 8
-texture = ExtResource("4_5s0de")
-stretch_mode = 2
 
 [node name="80Spacer" type="Control" parent="UI"]
 custom_minimum_size = Vector2(0, 80)
