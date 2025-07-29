@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cv75j6xrskgg4"]
+[gd_scene load_steps=35 format=3 uid="uid://cv75j6xrskgg4"]
 
 [ext_resource type="Shader" uid="uid://biqujdf2x8j1m" path="res://shaders/wobbly_grid.gdshader" id="1_xlgjy"]
 [ext_resource type="PackedScene" uid="uid://cb2gtpptalj7x" path="res://src/boats/player_boat.tscn" id="2_lmvt5"]
@@ -12,7 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://cgvugn245jda7" path="res://src/boats/enemy_boat.tscn" id="8_mnest"]
 [ext_resource type="Script" uid="uid://c5cfcd31aqssd" path="res://src/next_sector.gd" id="10_xxpr6"]
 [ext_resource type="Script" uid="uid://dbbw4yi8vlvk8" path="res://src/ui/boat_info.gd" id="11_ggwaq"]
+[ext_resource type="Shader" uid="uid://b5yewt0nt06tb" path="res://shaders/wobbly_map.gdshader" id="13_a7soy"]
 [ext_resource type="Script" uid="uid://cbj8null4r8j4" path="res://src/ui/wave_info.gd" id="13_ipohm"]
+[ext_resource type="Script" uid="uid://by2eimnkjo3sd" path="res://src/ui/map.gd" id="14_aikvj"]
 [ext_resource type="Script" uid="uid://cp8a5thfr32e0" path="res://src/ui/bottom_info.gd" id="14_lvrgx"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_60mvc"]
@@ -59,7 +61,7 @@ noise = SubResource("FastNoiseLite_g3j30")
 noise = SubResource("FastNoiseLite_a7soy")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g3j30"]
-shader = ExtResource("1_xlgjy")
+shader = ExtResource("13_a7soy")
 shader_parameter/color = Color(0, 0, 0, 1)
 shader_parameter/lineWidth = 1.2
 shader_parameter/size = Vector2(7, 7)
@@ -70,6 +72,26 @@ shader_parameter/wave_speed = 0.4
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_g3j30"]
 size = Vector2(560, 500)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_aikvj"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ns0lu"]
+noise = SubResource("FastNoiseLite_aikvj")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tqu6b"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b6dhc"]
+noise = SubResource("FastNoiseLite_tqu6b")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lslma"]
+shader = ExtResource("1_xlgjy")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/lineWidth = 2.0
+shader_parameter/size = Vector2(3, 3)
+shader_parameter/noise = SubResource("NoiseTexture2D_ns0lu")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_b6dhc")
+shader_parameter/edge_fade = 1.0
+shader_parameter/wave_speed = 1.0
 
 [node name="Game" type="HBoxContainer"]
 offset_left = -8.0
@@ -273,10 +295,16 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="Map" type="TextureRect" parent="UI/TopInfo/Map"]
+[node name="Minimap" type="TextureRect" parent="UI/TopInfo/Map"]
 material = SubResource("ShaderMaterial_g3j30")
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_g3j30")
+script = ExtResource("14_aikvj")
+
+[node name="Polygon2D" type="Polygon2D" parent="UI/TopInfo/Map/Minimap"]
+material = SubResource("ShaderMaterial_lslma")
+antialiased = true
+polygon = PackedVector2Array(240, 255, 280, 215, 320, 255, 280, 287)
 
 [node name="80Spacer" type="Control" parent="UI"]
 custom_minimum_size = Vector2(0, 80)
