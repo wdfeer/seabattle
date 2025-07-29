@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cv75j6xrskgg4"]
+[gd_scene load_steps=28 format=3 uid="uid://cv75j6xrskgg4"]
 
 [ext_resource type="Shader" uid="uid://biqujdf2x8j1m" path="res://shaders/wobbly_grid.gdshader" id="1_xlgjy"]
 [ext_resource type="PackedScene" uid="uid://cb2gtpptalj7x" path="res://src/boats/player_boat.tscn" id="2_lmvt5"]
@@ -47,6 +47,29 @@ shader = ExtResource("4_28ht4")
 shader_parameter/circle_size = 3.0
 shader_parameter/circle_centers = PackedVector2Array()
 shader_parameter/circle_count = 0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_g3j30"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g3j30"]
+noise = SubResource("FastNoiseLite_g3j30")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_a7soy"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a7soy"]
+noise = SubResource("FastNoiseLite_a7soy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g3j30"]
+shader = ExtResource("1_xlgjy")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/lineWidth = 1.2
+shader_parameter/size = Vector2(7, 7)
+shader_parameter/noise = SubResource("NoiseTexture2D_g3j30")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_a7soy")
+shader_parameter/edge_fade = 1.0
+shader_parameter/wave_speed = 0.4
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_g3j30"]
+size = Vector2(560, 500)
 
 [node name="Game" type="HBoxContainer"]
 offset_left = -8.0
@@ -145,7 +168,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(560, 0)
 layout_mode = 2
 
-[node name="PlayerLabel" type="Label" parent="UI/TopInfo/Status"]
+[node name="Label" type="Label" parent="UI/TopInfo/Status"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Status"
@@ -156,9 +179,10 @@ custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
 [node name="PlayerInfo" type="VBoxContainer" parent="UI/TopInfo/Status" node_paths=PackedStringArray("title", "boat_info")]
+custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
 script = ExtResource("5_d67vo")
-title = NodePath("../PlayerLabel")
+title = NodePath("../Label")
 boat_info = NodePath("BoatInfo")
 
 [node name="BoatInfo" type="Control" parent="UI/TopInfo/Status/PlayerInfo" node_paths=PackedStringArray("boat_label", "hp_label", "weapon_label", "dmg_label", "fire_rate_label")]
@@ -172,6 +196,7 @@ fire_rate_label = NodePath("../WeaponInfoBox/VBoxContainer/FireRateLabel")
 
 [node name="BoatInfoBox" type="PanelContainer" parent="UI/TopInfo/Status/PlayerInfo"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/TopInfo/Status/PlayerInfo/BoatInfoBox"]
 layout_mode = 2
@@ -201,6 +226,7 @@ layout_mode = 2
 
 [node name="WeaponInfoBox" type="PanelContainer" parent="UI/TopInfo/Status/PlayerInfo"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/TopInfo/Status/PlayerInfo/WeaponInfoBox"]
 layout_mode = 2
@@ -232,6 +258,25 @@ horizontal_alignment = 2
 [node name="20Spacer1" type="Control" parent="UI/TopInfo/Status/PlayerInfo/WeaponInfoBox/VBoxContainer"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
+
+[node name="Map" type="VBoxContainer" parent="UI/TopInfo"]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/TopInfo/Map"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Map"
+horizontal_alignment = 1
+
+[node name="20Spacer1" type="Control" parent="UI/TopInfo/Map"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Map" type="TextureRect" parent="UI/TopInfo/Map"]
+material = SubResource("ShaderMaterial_g3j30")
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_g3j30")
 
 [node name="80Spacer" type="Control" parent="UI"]
 custom_minimum_size = Vector2(0, 80)
