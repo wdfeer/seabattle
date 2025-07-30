@@ -11,7 +11,6 @@ static func switch(delta: Vector2i, scene_tree: SceneTree):
 	Sectors.current = pos
 	
 	var player_boat = PlayerController.get_player(scene_tree)
-	delta.y *= -1
 	player_boat.position = Vector2i(720, 720) - delta * 600
 	
 	Minimap.instance.update_map()

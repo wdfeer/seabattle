@@ -157,7 +157,7 @@ visible = false
 position = Vector2(720, 100)
 rotation = -1.5708
 script = ExtResource("10_xxpr6")
-direction = Vector2i(0, 1)
+direction = Vector2i(0, -1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sea/NextSectorUp"]
 polygon = PackedVector2Array(0, -80, 80, 0, 0, 80)
@@ -170,7 +170,7 @@ visible = false
 position = Vector2(720, 1340)
 rotation = 1.5708
 script = ExtResource("10_xxpr6")
-direction = Vector2i(0, -1)
+direction = Vector2i(0, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sea/NextSectorDown"]
 polygon = PackedVector2Array(0, -80, 80, 0, 0, 80)
